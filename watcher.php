@@ -8,12 +8,12 @@ foreach ($urls as $url) {
 	$md5 = md5(implode(file($url)));
 
 	if ($oldmd5 <> $md5) {
-		$updatemessage = "Found change on " . $url . "\n";
+		$updatemessage = "Found change on " . trim($url) . "\n";
 		$fp = fopen('md5/' . $filename, 'w+');
 		fwrite($fp, $md5);
 		fclose($fp);
 		$fp = fopen('raw/' . $filename, 'w+');
-		fwrite($fp, file($url));
+		fwrite($fp, file(trim($url)));
 		fclose($fp);
 	}
 
