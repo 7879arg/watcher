@@ -25,8 +25,10 @@ if ($updatemessage <> '') {
 	updateGit($updatemessage);
 	echo $updatemessage;
 }
-
 function updateGit($message) {
+	$fp = fopen('README.md', 'w+');
+	fwrite($fp, $message);
+	fclose($fp);
 	$dirs = array("md5", "raw", ".");
 	foreach ($dirs as $dir) {
 		$dh = opendir($dir);
