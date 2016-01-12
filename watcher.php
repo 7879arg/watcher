@@ -14,7 +14,7 @@ foreach ($urls as $uu) {
 			fwrite($fp, $md5);
 			fclose($fp);
 			$fp = fopen('raw/' . $filename, 'w+');
-			fwrite($fp, file(trim($url)));
+			fwrite($fp, implode(file(trim($url))));
 			fclose($fp);
 		}
 	}
