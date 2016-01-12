@@ -2,8 +2,8 @@
 
 $urls = file('urls.txt');
 $updatemessage = '';
-foreach ($urls as $url) {
-	$url = trim($url); $filename = urlencode($url);
+foreach ($urls as $uu) {
+	$url = trim($uu); $filename = urlencode($url);
 	$oldmd5 = implode(file('md5/' . $filename));
 	$md5 = md5(implode(file($url)));
 
