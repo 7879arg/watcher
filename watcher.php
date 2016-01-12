@@ -6,7 +6,7 @@ foreach ($urls as $uu) {
 	$url = trim($uu); $filename = urlencode($url);
 	if ($url <> '') {
 		$oldmd5 = implode(file('md5/' . $filename));
-		$md5 = md5(implode(file($url)));
+		$md5 = md5(@implode(file($url)));
 
 		if ($oldmd5 <> $md5) {
 			$updatemessage = "Found change on " . trim($url) . "\n";
@@ -41,4 +41,15 @@ function updateGit($message) {
 	$cmd[] = 'git commit -m "' . $message . '"';
 	$cmd[] = 'git push -u origin master';
 	foreach ($cmd as $c) echo $c . "\n" . trim(`$c`) . "\n";
+	sendEmail($message);
+}
+function sendEmail($message) {
+	include('../email.php');
+        $to = $email;
+        $subject = 'Update';
+        $headers = 'From: ' . $from . "\r\n" .
+                'Reply-To: ' . $from . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+        mail($to, $subject, $message, $headers);
+
 }
