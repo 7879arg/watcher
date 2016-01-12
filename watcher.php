@@ -4,17 +4,19 @@ $urls = file('urls.txt');
 $updatemessage = '';
 foreach ($urls as $uu) {
 	$url = trim($uu); $filename = urlencode($url);
-	$oldmd5 = implode(file('md5/' . $filename));
-	$md5 = md5(implode(file($url)));
+	if ($url <> '') {
+		$oldmd5 = implode(file('md5/' . $filename));
+		$md5 = md5(implode(file($url)));
 
-	if ($oldmd5 <> $md5) {
-		$updatemessage = "Found change on " . trim($url) . "\n";
-		$fp = fopen('md5/' . $filename, 'w+');
-		fwrite($fp, $md5);
-		fclose($fp);
-		$fp = fopen('raw/' . $filename, 'w+');
-		fwrite($fp, file(trim($url)));
-		fclose($fp);
+		if ($oldmd5 <> $md5) {
+			$updatemessage = "Found change on " . trim($url) . "\n";
+			$fp = fopen('md5/' . $filename, 'w+');
+			fwrite($fp, $md5);
+			fclose($fp);
+			$fp = fopen('raw/' . $filename, 'w+');
+			fwrite($fp, file(trim($url)));
+			fclose($fp);
+		}
 	}
 
 }
