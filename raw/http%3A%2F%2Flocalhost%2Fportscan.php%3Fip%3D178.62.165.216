@@ -1,7 +1,8 @@
 
 Nmap scan report for 178.62.165.216
-Not shown: 20478 closed ports
-PORT   STATE    SERVICE
-22/tcp filtered ssh
-80/tcp open     http
+Not shown: 20477 closed ports
+PORT      STATE    SERVICE
+22/tcp    filtered ssh
+80/tcp    open     http
+11093/tcp filtered unknown
 
