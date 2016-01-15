@@ -1,1 +1,1 @@
-Found change on http://pastebin.com/raw/bw9V8Stw
+Found change on https://www.reddit.com/r/7879arg/.rss
